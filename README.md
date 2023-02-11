@@ -1,11 +1,12 @@
 Simple parser for telegram channels and some django backend for parsed messaged in AdminLTE v3 template
 
 
-main.py starting bot.py
-
+Just do `python main.py`
 
 #### bot.py is a parser
-For proper work bot.py requires `config.ini` in same folder
+For proper work bot.py requires `config.ini` in same folder,
+
+
 example of config.ini
 
 - [Telegram]
@@ -14,7 +15,7 @@ example of config.ini
 - username = your_username
 
 
-bot.py will parse 10 (could be changed) last messages on givin channels (url or id) and save data as json
+bot.py will parse 10 (could be changed) last messages on given channels (url or id) and save data as json
 
 
 main.py load json to db.sqlite3 (could be changed)
