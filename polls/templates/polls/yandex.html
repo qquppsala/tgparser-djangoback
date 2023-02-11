@@ -1,0 +1,33 @@
+{% extends "polls/index.html" %}
+
+{% block content %}
+    {% for val in values %}
+        <!-- Таблица каталога-->
+        <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">id</th>
+              <th scope="col">Сообщение</th>
+              <th scope="col">Дата</th>
+              <th scope="col">Количество просмотров</th>
+              <th scope="col">Количество перессылок</th>
+              <th scope="col">Путь к картинке</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for message in Yandex %}}
+            <tr>
+              <th scope="row">1</th>
+              <td>{{ message.message_id }}</td>
+              <td>{{ message.message }}</td>
+              <td>{{ message.date }}</td>
+              <td>{{ message.views }}</td>
+              <td>{{ message.forwards }}</td
+              <td>{{ message.path }}</td
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        {{val}}
+    {% endfor %}
+{% endblock %}

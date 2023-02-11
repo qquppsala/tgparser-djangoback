@@ -1,0 +1,13 @@
+{% extends "polls/index.html" %}
+
+{% for message in Ozon %}}
+    <tr>
+        <th scope="row">1</th>
+        <td>{{ message.message_id }}</td>
+        <td>{{ message.message }}</td>
+        <td>{{ message.date }}</td>
+        <td>{{ message.views }}</td>
+        <td>{{ message.forwards }}</td
+        <td>{{ message.path }}</td
+    </tr>
+{% endfor %}
