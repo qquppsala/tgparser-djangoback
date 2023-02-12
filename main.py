@@ -4,7 +4,7 @@ from bot import start_bot
 
 
 # Проверяем наличие json
-def check_json():
+def check_json(news_number):
     try:
         print('Ищу файл channel_messages.json')
         with open('channel_messages.json') as inf:
@@ -12,7 +12,7 @@ def check_json():
     except FileNotFoundError:
         print('Файл не найден')
         print('Создаю новый channel_messages.json')
-        start_bot()
+        start_bot(news_number)
         with open('channel_messages.json') as inf:
             data = json.load(inf)
         return data
@@ -50,6 +50,20 @@ def create_db(name):
             connection.close()
             print("Соединение с  sqlite завершено")
 
+
+def count_news(data, news_number):
+    try:
+        names = list(data.keys())
+        old_news_number = len(data[names[0]])
+        if old_news_number != news_number:
+            start_bot(news_number)
+            data = check_json(news_number)
+    except  Exception as ex:
+        print(ex) 
+        print(f'Error in {count_news.__name__} function')
+    else:
+        print(f'Количество записей изменено, было {old_news_number}, стало {news_number}')
+        return data
 
 def fill_db(data, name):
     # Заполняет таблицу name
@@ -116,7 +130,10 @@ def db_check(data):
 
 
 def main():
-    data = check_json()
+    print('Сколько новостей нужно?')
+    news_number = int(input('Введите количество новостей цифрами \n'))
+    data = check_json(news_number)
+    data = count_news(data, news_number)
     db_check(data)
 
 if __name__ == "__main__":

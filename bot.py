@@ -26,7 +26,7 @@ client = TelegramClient(username, api_id, api_hash)
 urls = {'Yandex_Market': 'https://t.me/market_marketplace', 'OZON' : 'https://t.me/ozonmarketplace'}
 
 
-async def dump_all_messages(channel, name):
+async def dump_all_messages(channel, name, news_number):
         
     # Записывает JSON-файл с информацией о total_count_limit последних новостях с канала
     offset_msg = 0    # номер записи, с которой начинается считывание
@@ -34,7 +34,7 @@ async def dump_all_messages(channel, name):
 
     all_messages = {name:{}}   # словарь всех сообщений
     total_messages = 0
-    total_count_limit = 10  # поменяйте это значение, если вам нужны более 10 сообщений
+    total_count_limit = news_number # поменяйте это значение, если вам нужны более 10 сообщений
     print(f'Парсим {name}')
 
     while True:
@@ -104,7 +104,7 @@ async def dump_all_messages(channel, name):
     print(f'Парсинг новостей на канале {name} успешно выполнен.')
     print('*'* 60)
 
-async def _main():
+async def _main(news_number):
     # Запуск клиента
     await client.start()
     print("Клиент создан")
@@ -123,10 +123,10 @@ async def _main():
         else:
             entity = url
         channel = await client.get_entity(entity)
-        await dump_all_messages(channel, key)
+        await dump_all_messages(channel, key, news_number)
 
-def start_bot():
+def start_bot(news_number):
     with client:
-        client.loop.run_until_complete(_main())
+        client.loop.run_until_complete(_main(news_number))
 
 
