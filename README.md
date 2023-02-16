@@ -1,5 +1,6 @@
 Simple parser for telegram channels and some django backend for parsed messaged in AdminLTE v3 template
-
+default sqlite3 used for data storage
+script will create TABLEs if none is exist
 
 Just do `python main.py`
 
